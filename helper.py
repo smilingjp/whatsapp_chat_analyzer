@@ -38,7 +38,7 @@ def most_busy_users(df):
     df = round((df['user'].value_counts() / df.shape[0]) * 100, 2).reset_index().rename(
         columns={'index': 'name', 'user': 'percent'})
     return x,df
-'''
+
 def most_common_words(selected_user,df):
 
     f = open('stop_hinglish.txt','r')
@@ -59,14 +59,14 @@ def most_common_words(selected_user,df):
 
     most_common_df = pd.DataFrame(Counter(words).most_common(20))
     return most_common_df
-'''
+
 def emoji_helper(selected_user,df):
     if selected_user != 'Overall':
         df = df[df['user'] == selected_user]
 
     emojis = []
     for message in df['message']:
-        emojis.extend([c for c in message if c in emoji.UNICODE_EMOJI['en']])
+        emojis.extend([c for c in message if c in emoji.EMOJI_DATA])
 
     emoji_df = pd.DataFrame(Counter(emojis).most_common(len(Counter(emojis))))
 

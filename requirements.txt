@@ -1,0 +1,8 @@
+1. streamlit
+2. matplotlib
+3. seaborn
+4. urlextract
+5. nltk
+6. pandas
+7. emoji
+8. numpy

@@ -28,18 +28,32 @@ if uploaded_file is not None:
         col1, col2, col3, col4 = st.columns(4)
 
         with col1:
-            st.header("Total Messages")
-            st.title(num_messages)
+            st.markdown("### Total Messages")
+            st.subheader(num_messages)
         with col2:
-            st.header("Total Words")
-            st.title(words)
+            st.markdown("### Total Words")
+            st.subheader(words)
         with col3:
-            st.header("Media Shared")
-            st.title(num_media_messages)
+            st.markdown("### Media Shared")
+            st.subheader(num_media_messages)
         with col4:
-            st.header("Links Shared")
-            st.title(num_links)
+            st.markdown("### Links Shared")
+            st.subheader(num_links)
 
+
+        #Most active users
+        if selected_user == 'Overall':
+           st.title("Most active users")
+           x, user_percent_df = helper.most_busy_users(df)
+           fig, ax = plt.subplots()
+           plt.xticks(rotation=45)     #for better visibility
+           col1, col2 = st.columns(2)
+
+           with col1:
+               ax.bar(x.index, x.values)
+               st.pyplot(fig)
+           with col2:
+               st.dataframe(user_percent_df)  # Show user percentage data
         # Monthly timeline
         st.title("Monthly Timeline")
         timeline = helper.monthly_timeline(selected_user, df)
@@ -61,6 +75,33 @@ if uploaded_file is not None:
         else:
             fig, ax = plt.subplots()
             sns.heatmap(user_heatmap, cmap="coolwarm", annot=True)
+            st.pyplot(fig)
+
+
+        #Most common Words
+
+        most_common_df = helper.most_common_words(selected_user,df)
+
+        fig,ax = plt.subplots()
+
+        ax.barh(most_common_df[0],most_common_df[1])
+        plt.xticks(rotation='vertical')
+
+        st.title("Most Common Words")
+        st.pyplot(fig)
+
+        #emoji Analysis
+
+        emoji_df = helper.emoji_helper(selected_user,df)
+        st.title("Emoji Analysis")
+
+        col1,col2 = st.columns(2)
+        with col1:
+            st.dataframe(emoji_df)
+        with col2:
+          if not emoji_df.empty:
+            fig,ax = plt.subplots()
+            ax.pie(emoji_df[1].head(),labels=emoji_df[0].head(), autopct='%1.1f%%')
             st.pyplot(fig)
 
 
@@ -87,7 +128,7 @@ if uploaded_file is not None:
         # Plot Pie Chart
         fig, ax = plt.subplots()
         ax.pie(sentiment_counts, labels=sentiment_counts.index, autopct='%1.1f%%',
-               colors=['green', 'red', 'gray'], startangle=90, shadow=True)
+               colors=['yellow', 'green', 'red'], startangle=90, shadow=False)
         plt.title('Sentiment Distribution')
         st.pyplot(fig)
 

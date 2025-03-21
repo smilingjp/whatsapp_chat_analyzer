@@ -19,11 +19,15 @@ Analyze WhatsApp chat sentiments, user activity, and word trends using NLP & Dat
 ## How It Works?
 1️⃣ **Export a WhatsApp Chat**:
 
-#Open WhatsApp → Select a chat → Export chat (without media)(works for 12 hrs time system)
-#Save the .txt file
+#### Open WhatsApp → Select a chat → Export chat (without media)(works for 12 hrs time system)
+#### Now save the .txt file
 2️⃣ **Upload the File to the Web App**
 
-#The app will process the chat & perform sentiment analysis
+#### The app will process the chat & perform sentiment analysis
+
+
+
+
 
  
 

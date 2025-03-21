@@ -25,6 +25,11 @@ Analyze WhatsApp chat sentiments, user activity, and word trends using NLP & Dat
 
 #### The app will process the chat & perform sentiment analysis
 
+![APP SCREENSHOT](./Screenshots/Screenshot%202025-03-21%20182256.png)
+![APP SCREENSHOT](./Screenshots/Screenshot%202025-03-21%20182228.png)
+
+
+
 
 
 
